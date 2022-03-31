@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'signup.dart';
-import 'Profile.dart';
-import 'package:student_app/Profile.dart';
+import 'profile.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -22,21 +21,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Student App'),
       debugShowCheckedModeBanner: false,
       routes: <String, WidgetBuilder>{
-        '/signup': (BuildContext context) => const SignupPage()
+        '/signup': (BuildContext context) => const SignupPage(),
+        '/profile': (BuildContext context) => const ProfilePage()
       },
     );
   }
@@ -66,8 +57,6 @@ class _MyHomePageState extends State<MyHomePage> {
   int _success = 1;
   String _userEmail = "";
 
-  get Profile => null;
-
   void _singIn() async {
     final User? user = (await _auth.signInWithEmailAndPassword(
             email: _emailController.text, password: _passwordController.text))
@@ -91,6 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          // ignore: avoid_unnecessary_containers
           Container(
             child: Stack(
               children: <Widget>[
@@ -156,11 +146,12 @@ class _MyHomePageState extends State<MyHomePage> {
                           : (_success == 2
                               ? 'Successfully signed in ' + _userEmail
                               : 'Sign in failed'),
-                      style: TextStyle(color: Colors.red),
+                      style: const TextStyle(color: Colors.red),
                     )),
                 const SizedBox(
                   height: 40,
                 ),
+                // ignore: sized_box_for_whitespace
                 Container(
                   height: 40,
                   child: Material(
@@ -168,16 +159,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     shadowColor: Colors.greenAccent,
                     color: Colors.black,
                     elevation: 7,
-                    child: GestureDetector(
-                      onTap: () async {
+                    child: MaterialButton(
+                      onPressed: () async {
                         _singIn();
-                        onPressed:
-                        () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => Profile.dart()));
-                        };
+                        Navigator.of(context).pushNamed('/profile');
                       },
                       child: const Center(
                         child: Text(
