@@ -5,146 +5,345 @@ import 'package:firebase_core/firebase_core.dart';
 import 'signup.dart';
 import 'main.dart';
 
-void main() {
-  runApp(MyApp());
+class ProfilePage extends StatefulWidget {
+  @override
+  MapScreenState createState() => MapScreenState();
 }
 
-class MyApp extends StatelessWidget {
+class MapScreenState extends State<ProfilePage>
+    with SingleTickerProviderStateMixin {
+  bool _status = true;
+  final FocusNode myFocusNode = FocusNode();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: LoginDemo(),
+    return new Scaffold(
+        body: new Container(
+      color: Colors.white,
+      child: new ListView(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              new Container(
+                height: 250.0,
+                color: Colors.white,
+                child: new Column(
+                  children: <Widget>[
+                    Padding(
+                        padding: EdgeInsets.only(left: 20.0, top: 20.0),
+                        child: new Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            new Icon(
+                              Icons.arrow_back_ios,
+                              color: Colors.black,
+                              size: 22.0,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 25.0),
+                              child: new Text('PROFILE',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20.0,
+                                      fontFamily: 'sans-serif-light',
+                                      color: Colors.black)),
+                            )
+                          ],
+                        )),
+                    Padding(
+                      padding: EdgeInsets.only(top: 20.0),
+                      child: new Stack(fit: StackFit.loose, children: <Widget>[
+                        new Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            new Container(
+                                width: 140.0,
+                                height: 140.0,
+                                decoration: new BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: new DecorationImage(
+                                    image: new ExactAssetImage(
+                                        'assets/images/as.png'),
+                                    fit: BoxFit.cover,
+                                  ),
+                                )),
+                          ],
+                        ),
+                      ]),
+                    )
+                  ],
+                ),
+              ),
+              new Container(
+                color: Color(0xffFFFFFF),
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 25.0),
+                  child: new Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 25.0),
+                          child: new Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisSize: MainAxisSize.max,
+                            children: <Widget>[
+                              new Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  new Text(
+                                    'Prsonal Information',
+                                    style: TextStyle(
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          )),
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 25.0),
+                          child: new Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: <Widget>[
+                              new Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  new Text(
+                                    'Name',
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          )),
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 2.0),
+                          child: new Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: <Widget>[
+                              new Flexible(
+                                child: new TextField(
+                                  decoration: const InputDecoration(
+                                    hintText: "Enter Your Name",
+                                  ),
+                                  enabled: !_status,
+                                  autofocus: !_status,
+                                ),
+                              ),
+                            ],
+                          )),
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 25.0),
+                          child: new Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: <Widget>[
+                              new Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  new Text(
+                                    'Email ID',
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          )),
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 2.0),
+                          child: new Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: <Widget>[
+                              new Flexible(
+                                child: new TextField(
+                                  decoration: const InputDecoration(
+                                      hintText: "Enter Email ID"),
+                                  enabled: !_status,
+                                ),
+                              ),
+                            ],
+                          )),
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 25.0),
+                          child: new Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: <Widget>[
+                              new Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  new Text(
+                                    'Mobile',
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          )),
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 2.0),
+                          child: new Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: <Widget>[
+                              new Flexible(
+                                child: new TextField(
+                                  decoration: const InputDecoration(
+                                      hintText: "Enter Mobile Number"),
+                                  enabled: !_status,
+                                ),
+                              ),
+                            ],
+                          )),
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 25.0),
+                          child: new Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Expanded(
+                                child: Container(
+                                  child: new Text(
+                                    'Pin Code',
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                flex: 2,
+                              ),
+                              Expanded(
+                                child: Container(
+                                  child: new Text(
+                                    'State',
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                flex: 2,
+                              ),
+                            ],
+                          )),
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 2.0),
+                          child: new Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Flexible(
+                                child: Padding(
+                                  padding: EdgeInsets.only(right: 10.0),
+                                  child: new TextField(
+                                    decoration: const InputDecoration(
+                                        hintText: "Enter Pin Code"),
+                                    enabled: !_status,
+                                  ),
+                                ),
+                                flex: 2,
+                              ),
+                              Flexible(
+                                child: new TextField(
+                                  decoration: const InputDecoration(
+                                      hintText: "Enter State"),
+                                  enabled: !_status,
+                                ),
+                                flex: 2,
+                              ),
+                            ],
+                          )),
+                      !_status ? _getActionButtons() : new Container(),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
+        ],
+      ),
+    ));
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the Widget is disposed
+    myFocusNode.dispose();
+    super.dispose();
+  }
+
+  Widget _getActionButtons() {
+    return Padding(
+      padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 45.0),
+      child: new Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.only(right: 10.0),
+              child: Container(
+                  child: new RaisedButton(
+                child: new Text("Save"),
+                textColor: Colors.white,
+                color: Colors.green,
+                onPressed: () {
+                  setState(() {
+                    _status = true;
+                    FocusScope.of(context).requestFocus(new FocusNode());
+                  });
+                },
+                shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(20.0)),
+              )),
+            ),
+            flex: 2,
+          ),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.only(left: 10.0),
+              child: Container(
+                  child: new RaisedButton(
+                child: new Text("Cancel"),
+                textColor: Colors.white,
+                color: Colors.red,
+                onPressed: () {
+                  setState(() {
+                    _status = true;
+                    FocusScope.of(context).requestFocus(new FocusNode());
+                  });
+                },
+                shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(20.0)),
+              )),
+            ),
+            flex: 2,
+          ),
+        ],
+      ),
     );
   }
-}
-
-class LoginDemo extends StatefulWidget {
-  @override
-  _LoginDemoState createState() => _LoginDemoState();
-}
-
-class _LoginDemoState extends State<LoginDemo> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar:
-            AppBar(title: Text("PROFILE PAGE"), backgroundColor: Colors.grey),
-        body: SingleChildScrollView(
-            child: Column(children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(top: 50.0),
-            child: Center(
-              child: Container(
-                  width: 250,
-                  height: 200,
-                  child: Image.asset('assets/images/Profile.jpeg')),
-            ),
-          ),
-          const Padding(
-            padding:
-                EdgeInsets.only(left: 15.0, right: 15.0, top: 0, bottom: 0),
-            child: TextField(
-                decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'NAME',
-            )),
-          ),
-          const Padding(
-            padding:
-                EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
-            child: TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'EMAIL_ID',
-                  hintText: 'Enter secure password'),
-            ),
-          ),
-          const Padding(
-            padding:
-                EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
-            child: TextField(
-                decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'ADDERESS',
-            )),
-          ),
-          const Padding(
-            padding:
-                EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
-            child: TextField(
-                decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'CITY',
-            )),
-          ),
-          const Padding(
-            padding:
-                EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
-            child: TextField(
-                decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'PHONE NUMBER',
-            )),
-          ),
-          const Padding(
-            padding:
-                EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
-            child: TextField(
-                decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'DATE-OF-BIRTH',
-            )),
-          ),
-        ])));
-  }
-}
-
-Widget _buildupdateBtn() {
-  return Container(
-    padding: EdgeInsets.symmetric(vertical: 25.0),
-    width: double.infinity,
-    child: RaisedButton(
-      elevation: 5.0,
-      onPressed: () => print('update Button Pressed'),
-      padding: EdgeInsets.all(15.0),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30.0),
-      ),
-      color: Colors.black,
-      child: const Text(
-        'UPDATE',
-        style: TextStyle(
-          color: Colors.white,
-          letterSpacing: 1.5,
-          fontSize: 18.0,
-        ),
-      ),
-    ),
-  );
-}
-
-Widget _buildaddBtn() {
-  return Container(
-    padding: EdgeInsets.symmetric(vertical: 25.0),
-    width: double.infinity,
-    child: RaisedButton(
-      elevation: 5.0,
-      onPressed: () => print('ADD Button Pressed'),
-      padding: EdgeInsets.all(15.0),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30.0),
-      ),
-      color: Colors.black,
-      child: const Text(
-        'ADD',
-        style: TextStyle(
-          color: Colors.white,
-          letterSpacing: 1.5,
-          fontSize: 18.0,
-        ),
-      ),
-    ),
-  );
 }
