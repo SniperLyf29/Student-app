@@ -98,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: const EdgeInsets.only(top: 35, left: 20, right: 30),
             child: Column(
               children: <Widget>[
-                TextField(
+                (TextField(
                   controller: _emailController,
                   decoration: const InputDecoration(
                       labelText: "Email",
@@ -106,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           fontFamily: 'Montserrat', color: Colors.grey),
                       focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.green))),
-                ),
+                )),
                 const SizedBox(
                   height: 20,
                 ),
@@ -160,17 +160,21 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Colors.black,
                     elevation: 7,
                     child: MaterialButton(
-                      onPressed: () async {
+                      onPressed: () {
                         _singIn();
-                        Navigator.of(context).pushNamed('/profile');
                       },
-                      child: const Center(
-                        child: Text(
-                          'Login',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "Montserrat",
+                      child: MaterialButton(
+                        onPressed: () {
+                          Navigator.of(context).pushNamed('/profile');
+                        },
+                        child: const Center(
+                          child: Text(
+                            'Login',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: "Montserrat",
+                            ),
                           ),
                         ),
                       ),
