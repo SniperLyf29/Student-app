@@ -168,7 +168,7 @@ class _LoginPageState extends State<LoginPage> {
                       },
                       child: MaterialButton(
                         onPressed: () {
-                          Navigator.of(context).pushNamed('/profile');
+                          Navigator.of(context).pushNamed('/home');
                         },
                         child: const Center(
                           child: Text(
