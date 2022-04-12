@@ -32,6 +32,24 @@ updateData() async {
   querySnapshot.docs[0].reference.update(data);
 }
 
+deleteData() async {
+  CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection('student');
+  QuerySnapshot querySnapshot = await collectionReference.get();
+  querySnapshot.docs[0].reference.delete();
+}
+
+// fetchData() {
+//   CollectionReference collectionReference =
+//       FirebaseFirestore.instance.collection('student');
+//   collectionReference.snapshots().listen((snapshot) {
+
+//     setState(() {
+//       data = snapshot.docs[0].data();
+//     });
+//   });
+// }
+
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
@@ -142,6 +160,32 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: const Flexible(
                       child: Text(
                         'Update',
+                        style: TextStyle(
+                          color: Colors.white,
+                          letterSpacing: 1.5,
+                          fontSize: 18.0,
+                        ),
+                      ),
+                    )),
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(vertical: 25.0),
+                width: 50,
+                child: MaterialButton(
+                    elevation: 5.0,
+                    onPressed: () {
+                      setState(() {
+                        deleteData();
+                      });
+                    },
+                    padding: const EdgeInsets.all(15.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    color: Colors.black,
+                    child: const Flexible(
+                      child: Text(
+                        'Delete',
                         style: TextStyle(
                           color: Colors.white,
                           letterSpacing: 1.5,
